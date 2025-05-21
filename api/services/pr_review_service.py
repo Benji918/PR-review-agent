@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv('.env')
 
 
-client = genai.Client(api_key='AIzaSyBWLwRoo7dakR1Z2S5Feyjc8K2-jRhlvHc')
+client = genai.Client(api_key='')
 
 async def get_pr(owner, repo):
     # owner = 'Benji918'
