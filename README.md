@@ -1,6 +1,6 @@
 # CodeReviewBot
 
-CodeReviewBot is an AI-powered code review assistant that leverages Google's Gemini LLM to analyze GitHub Pull Requests and repositories. It automatically reviews code changes, identifies issues, and provides constructive feedback by posting comments directly to pull requests or creating GitHub issues.
+PR review agent is an AI-powered code review assistant that leverages Google's Gemini LLM to analyze GitHub Pull Requests and repositories. It automatically reviews code changes, identifies issues, and provides constructive feedback by posting comments directly to pull requests or creating GitHub issues.
 
 ![image](https://github.com/Benji918/PR-review-agent/blob/main/Prompt%20Title_%C2%A0Generate%20Application%20Flow%20Diagram%20for%20Simple%20PR%20Review%20Agent%20-%20visual%20selection.png)
 
@@ -24,8 +24,8 @@ CodeReviewBot is an AI-powered code review assistant that leverages Google's Gem
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/codereviewbot.git
-   cd codereviewbot
+   git clone https://github.com/Benji918/PR-review-agent.git
+   cd PR-review-agent
    ```
 
 2. Install dependencies:
