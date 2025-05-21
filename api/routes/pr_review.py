@@ -85,7 +85,7 @@ async def fetch_pull_request_diff(
     comment = await pr_comment(owner=owner, repo=repo, pr_number=pr_number, comment=analysis_result)
 
 
-    return JSONResponse(content={'message': 'PR review completed', 'result': comment})
+    return JSONResponse(content={'message': 'PR review completed!', 'result': comment})
 
 
 

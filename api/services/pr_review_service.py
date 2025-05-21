@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv('.env')
 
 
-client = genai.Client(api_key='AIzaSyBWLwRoo7dakR1Z2S5Feyjc8K2-jRhlvHc')
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 async def get_pr(owner, repo):
     # owner = 'Benji918'
@@ -29,24 +29,20 @@ async def analyze_diff_with_gemini(diff_content):
 
     try:
         prompt = f"""
-You are a helpful and critical code reviewer powered by Google Gemini 2.0 Flash.
-Review the following GitHub Pull Request diff. Provide constructive feedback focusing on:
-- Potential bugs or logical errors
-- Code clarity and readability
-- Adherence to common best practices
-- Possible performance issues
-- Security vulnerabilities
-- Suggestions for improvement
+        You’re a Google engineer reviewing this PR. Scan the diff below and give me clear, actionable feedback on:
 
-Analyze the changes file by file where applicable. If there are no significant issues or suggestions, state that clearly.
-Format your review in Markdown. Use bullet points, code blocks, and bold text to make it easy to read. Make the review 
-concise, short, and to the point. Do not include the actual code changes to the PR review
+        - Bugs & logic errors 
+        - Readability & style   
+        -  Best practices   
+        -  Performance hotspots   
+        -  Security risks 
 
-## Pull Request Diff:
+        Keep it very short, use Markdown with bold headings and bullet points, and skip pasting the actual diff.
 
-```diff
-{diff_content}
-"""
+        ## Diff
+        ```diff
+        {diff_content}
+        """
 
         response = client.models.generate_content(
             model="gemini-2.0-flash",
@@ -58,7 +54,6 @@ concise, short, and to the point. Do not include the actual code changes to the 
         return HTTPException(status_code=500, detail=str(e))
 
 async def pr_comment(owner, repo, pr_number, comment):
-    env = os.getenv("GITHUB_PERSONAL_ACCESS_TOKEN")
     url = f'https://api.github.com/repos/{owner}/{repo}/issues/{pr_number}/comments'
     headers = {
         'Accept': 'application/vnd.github+json',
