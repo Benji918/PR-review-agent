@@ -22,7 +22,7 @@ async def list_pr(request: Request,
     return ORJSONResponse(response.json())
 
 
-@pr_review.get('/fetch_pr_diff', summary="Fetch specific PR diff")
+@pr_review.get('/post_pr_comment', summary="Fetch specific PR diff")
 async def fetch_pull_request_diff(
         owner: str,
         repo: str,
