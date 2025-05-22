@@ -93,16 +93,14 @@ async def fetch_pull_request_diff(
 async def analyze_repository(owner: str, repo: str):
     """Endpoint to analyze a repository and create issues"""
     try:
-        # Step 1: Fetch repository contents
         files = await fetch_repo_contents(owner, repo)
 
         if not files:
             return {"message": "No files found or error fetching repository"}
 
-        # Step 2: Analyze with Gemini
         issues = await analyze_repo_with_gemini(files, owner, repo)
 
-        # Step 3: Create GitHub issues
+
         created_issues = await create_github_issues(owner, repo, issues)
 
         return JSONResponse(
