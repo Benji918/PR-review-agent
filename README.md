@@ -1,4 +1,4 @@
-# CodeReviewBot
+# PR review agent
 
 PR review agent is an AI-powered code review assistant that leverages Google's Gemini LLM to analyze GitHub Pull Requests and repositories. It automatically reviews code changes, identifies issues, and provides constructive feedback by posting comments directly to pull requests or creating GitHub issues.
 
