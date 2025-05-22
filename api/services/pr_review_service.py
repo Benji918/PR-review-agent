@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv('.env')
 
 
-api_key = os.getenv("GEMINI_API_KEY")
+api_key = '20323092erererererer'
 client = genai.Client(api_key=api_key)
 
 
