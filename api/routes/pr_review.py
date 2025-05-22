@@ -6,7 +6,8 @@ from fastapi.responses import ORJSONResponse, PlainTextResponse
 from fastapi import APIRouter
 from starlette.responses import JSONResponse
 
-from api.services.pr_review_service import get_pr, analyze_diff_with_gemini, pr_comment
+from api.services.pr_review_service import get_pr, analyze_diff_with_gemini, pr_comment, fetch_repo_contents, \
+    analyze_repo_with_gemini, create_github_issues
 
 pr_review = APIRouter(prefix="/pr_review", tags=["PR-review-agent"])
 
@@ -23,8 +24,6 @@ async def list_pr(request: Request,
 
 @pr_review.get('/fetch_pr_diff', summary="Fetch specific PR diff")
 async def fetch_pull_request_diff(
-        request: Request,
-        response: Response,
         owner: str,
         repo: str,
         pr_number: int
@@ -86,6 +85,35 @@ async def fetch_pull_request_diff(
 
 
     return JSONResponse(content={'message': 'PR review completed!', 'result': comment})
+
+
+
+#--------------ANALYZE REPOSITORY CONTENT TO POST ISSUES--------------#
+@pr_review.get('/analyze_repository', summary="Analyze repository")
+async def analyze_repository(owner: str, repo: str):
+    """Endpoint to analyze a repository and create issues"""
+    try:
+        # Step 1: Fetch repository contents
+        files = await fetch_repo_contents(owner, repo)
+
+        if not files:
+            return {"message": "No files found or error fetching repository"}
+
+        # Step 2: Analyze with Gemini
+        issues = await analyze_repo_with_gemini(files, owner, repo)
+
+        # Step 3: Create GitHub issues
+        created_issues = await create_github_issues(owner, repo, issues)
+
+        return JSONResponse(
+            content={
+                "message": f"Analysis complete. Created {len(created_issues)} issues.",
+                "issues": created_issues
+            }
+        )
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 
