@@ -6,7 +6,7 @@ PR review agent is an AI-powered code review assistant that leverages Google's G
 
 ## Features
 
-- 🔍 **Pull Request Analysis**: Automatically reviews PR diffs and posts feedback as comments
+- 🔍 **Pull Request Analysis**: Automatically reviews PR diffs and posts feedback
 - 📊 **Repository Scanning**: Analyzes entire repositories to identify code quality issues
 - 🚀 **Issue Creation**: Generates GitHub issues from analysis findings
 - 🛠️ **Customizable Analysis**: Focus on bugs, performance issues, security vulnerabilities, and more
