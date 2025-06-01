@@ -44,7 +44,7 @@ async def analyze_diff_with_gemini(diff_content):
         -  Performance hotspots   
         -  Security risks 
 
-        Keep it very short, use Markdown with bold headings and bullet points, and skip pasting the actual diff.
+        Keep it very short and concise no AI jargon's straight to the point, use Markdown with bold headings and bullet points, and skip pasting the actual diff.
 
         ## Diff
         ```diff
