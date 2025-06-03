@@ -6,23 +6,23 @@ from fastapi.responses import ORJSONResponse, PlainTextResponse
 from fastapi import APIRouter
 from starlette.responses import JSONResponse
 
-from api.services.pr_review_service import get_pr, analyze_diff_with_gemini, pr_comment, fetch_repo_contents, \
+from api.services.pr_review_service import analyze_diff_with_gemini, pr_comment, fetch_repo_contents, \
     analyze_repo_with_gemini, create_github_issues
 
 pr_review = APIRouter(prefix="/pr_review", tags=["PR-review-agent"])
 
 
-@pr_review.get("/", summary="List PRs", status_code=status.HTTP_200_OK)
-async def list_pr(request: Request,
-                  response: Response,
-                  owner: str,
-                  repo: str,):
+# @pr_review.get("/", summary="List PRs", status_code=status.HTTP_200_OK)
+# async def list_pr(request: Request,
+#                   response: Response,
+#                   owner: str,
+#                   repo: str,):
+#
+#     response = await get_pr(owner=owner, repo=repo)
+#     return ORJSONResponse(response.json())
 
-    response = await get_pr(owner=owner, repo=repo)
-    return ORJSONResponse(response.json())
 
-
-@pr_review.get('/post_pr_comment', summary="Fetch specific PR diff")
+@pr_review.get('/post_pr_comment', summary="Fetch specific PR diff and post comment")
 async def fetch_pull_request_diff(
         owner: str,
         repo: str,
