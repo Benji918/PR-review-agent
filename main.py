@@ -49,4 +49,4 @@ async def github_webhook(request: Request):
 if __name__ == '__main__':
     host = "0.0.0.0" if os.getenv("ENVIRONMENT") == "prod" else "127.0.0.1"
     reload = os.getenv("ENVIRONMENT") != "prod"
-    uvicorn.run('main:app', host=host, port=3001, reload=reload)
+    uvicorn.run('main:app', host=host, port=3002, reload=reload)
