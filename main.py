@@ -27,16 +27,17 @@ async def github_webhook(request: Request):
     try:
         payload = await request.json()
         raw = await request.body()
-        print(raw)
-        print(payload)
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Invalid JSON body: {e}")
 
     # Check if it's a PR opened or reopened event
     if (payload.get('action') == 'opened' or payload.get('action') == 'reopened'  and  'pull_request' in payload):
         owner = payload['repository']['owner']['login']
+        print(f'owner: {owner}')
         repo_name = payload['repository']['name']
+        print(f'repo_name: {repo_name}')
         pr_number = payload['pull_request']['number']
+        print(f'pr_number: {pr_number}')
 
         try:
             await fetch_pull_request_diff_with_app(owner, repo_name, pr_number)
