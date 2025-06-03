@@ -32,8 +32,8 @@ async def github_webhook(request: Request):
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Invalid JSON body: {e}")
 
-    # Check if it's a PR opened event
-    if (payload.get('action') == 'opened' and  'pull_request' in payload):
+    # Check if it's a PR opened or reopened event
+    if (payload.get('action') == 'opened' or payload.get('action') == 'reopened'  and  'pull_request' in payload):
         owner = payload['repository']['owner']['login']
         repo_name = payload['repository']['name']
         pr_number = payload['pull_request']['number']
@@ -42,6 +42,7 @@ async def github_webhook(request: Request):
             await fetch_pull_request_diff_with_app(owner, repo_name, pr_number)
             return ORJSONResponse({"status": "success", "message": "PR reviewed automatically"})
         except Exception as e:
+            print(e)
             return ORJSONResponse({"status": "error", "message": str(e)}, status_code=500)
 
     return ORJSONResponse({"status": "ok"})
