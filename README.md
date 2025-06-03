@@ -10,7 +10,7 @@ PR review agent is an AI-powered code review assistant that leverages Google's G
 - 📊 **Repository Scanning**: Analyzes entire repositories to identify code quality issues
 - 🚀 **Issue Creation**: Generates GitHub issues from analysis findings
 - 🛠️ **Customizable Analysis**: Focus on bugs, performance issues, security vulnerabilities, and more
-- 💬 **Clear Feedback**: Well-formatted markdown output with actionable recommendations
+- 💬 **Clear Feedback**: Well-formatted markdown outlsldldput with actionable recommendations
 
 ## Getting Started
 
