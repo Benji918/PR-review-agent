@@ -4,7 +4,6 @@ from fastapi.responses import ORJSONResponse
 from api.services.pr_review_service import fetch_pull_request_diff_with_app
 from api.routes import api_version_one
 import os
-import requests
 
 app = FastAPI(
     title="PR-review-agent",
