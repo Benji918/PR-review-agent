@@ -27,6 +27,8 @@ async def github_webhook(request: Request):
     try:
         payload = await request.json()
         raw = await request.body()
+        print(raw)
+        print(payload)
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Invalid JSON body: {e}")
 
