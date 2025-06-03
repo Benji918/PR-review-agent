@@ -12,7 +12,7 @@ from starlette.responses import JSONResponse
 load_dotenv('.env')
 
 
-api_key = os.getenv("GEMINI_API_KEY")
+api_key = 'ifdfifidhf#'
 client = genai.Client(api_key=api_key)
 
 
