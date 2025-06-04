@@ -1,0 +1,13 @@
+name: Keep API Alive
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ping API to Keep It Alive
+        run: curl -s -o /dev/null -w "%{http_code}" "${{ secrets.RENDER_PUBLIC_URL }}"
