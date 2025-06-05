@@ -3,6 +3,10 @@
 PR review agent is an AI-powered code review assistant that leverages Google's Gemini LLM to analyze GitHub Pull Requests and repositories. It automatically reviews code changes, identifies issues, and provides constructive feedback by posting comments directly to pull requests or creating GitHub issues.
 
 ![image](https://github.com/Benji918/PR-review-agent/blob/main/Prompt%20Title_%C2%A0Generate%20Application%20Flow%20Diagram%20for%20Simple%20PR%20Review%20Agent%20-%20visual%20selection.png)
+<a href="https://youtu.be/7Siu0UJ67RE" target="_blank">
+  <img src="https://img.youtube.com/vi/7Siu0UJ67RE/hqdefault.jpg" width="100%" />
+</a>
+
 
 ## Features
 
